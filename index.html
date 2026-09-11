@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mavis Chidinma Onyekachi | Financial Analyst & Project Manager</title>
+
+  <!--
+    ========================================================================
+    WELCOME! This file is built so you can edit it without any coding
+    knowledge. Every place you might want to change something has a
+    plain-English comment right above it, wrapped like this one.
+    Just open this file in any text editor (Notepad, TextEdit, VS Code,
+    etc.), find the comment that matches what you want to change, and
+    edit the text or file path right below it. Save, then open index.html
+    in your browser to see the result.
+    ========================================================================
+  -->
+
+  <!-- Google Fonts: Source Sans 3 (body/UI) + Source Serif 4 (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (for the social icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ======================================================================
+       DESIGN TOKENS — change colours/fonts globally from right here
+       ====================================================================== */
+    :root {
+      --accent: #7a2e3f;       /* <-- Change this hex code to change the accent colour everywhere on the site (matched to the burgundy blazer in your photo) */
+      --accent-dark: #5f2432;
+      --text-dark: #23262b;
+      --text-mid: #5a5f66;
+      --text-light: #8b9096;
+      --bg-white: #ffffff;
+      --bg-offwhite: #f8f4f1;  /* subtle warm tint echoing the tan backdrop in your photo */
+      --border-color: #e7e9ec;
+      --sidebar-width: 300px;
+      --header-height: 64px;
+      --font-body: 'Source Sans 3', -apple-system, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--bg-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ======================================================================
+       TOP HEADER BAR — logo on the left, social icons on the right
+       ====================================================================== */
+    .top-header {
+      position: fixed;
+      top: 0;
+      left: var(--sidebar-width);
+      right: 0;
+      height: var(--header-height);
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 900;
+    }
+
+    .top-header .logo {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--text-dark);
+    }
+
+    .top-header .logo span { color: var(--accent); }
+
+    .top-header .social-icons {
+      display: flex;
+      gap: 18px;
+    }
+
+    .top-header .social-icons a {
+      color: var(--text-mid);
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .top-header .social-icons a:hover { color: var(--accent); }
+
+    /* ======================================================================
+       FIXED LEFT SIDEBAR — name, title, nav, social icons at the bottom
+       ====================================================================== */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background: var(--bg-offwhite);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 36px;
+      z-index: 1000;
+    }
+
+    .sidebar-top .name {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .sidebar-top .job-title {
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      margin-bottom: 44px;
+    }
+
+    .sidebar-nav ul { list-style: none; }
+
+    .sidebar-nav li { margin-bottom: 18px; }
+
+    .sidebar-nav a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      position: relative;
+      padding-left: 0;
+      transition: color 0.2s ease, padding-left 0.2s ease;
+    }
+
+    .sidebar-nav a::before {
+      content: '';
+      position: absolute;
+      left: -18px;
+      top: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      color: var(--accent);
+      padding-left: 6px;
+    }
+
+    .sidebar-nav a:hover::before,
+    .sidebar-nav a.active::before {
+      width: 14px;
+    }
+
+    .sidebar-bottom .social-icons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .sidebar-bottom .social-icons a {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-bottom .social-icons a:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ======================================================================
+       MAIN CONTENT AREA (everything to the right of the sidebar)
+       ====================================================================== */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      padding-top: var(--header-height);
+    }
+
+    section {
+      padding: 100px 60px;
+      max-width: 1100px;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    h2.section-heading {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 32px;
+    }
+
+    /* ======================================================================
+       BANNER / ABOUT SECTION — bio left, circular photo right
+       ====================================================================== */
+    #about {
+      display: flex;
+      align-items: center;
+      gap: 70px;
+      padding-top: 130px;
+    }
+
+    .banner-text { flex: 1.3; }
+
+    .banner-text .tagline {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 22px;
+      max-width: 34ch;
+    }
+
+    .banner-text .tagline em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .banner-text p {
+      color: var(--text-mid);
+      font-size: 1rem;
+      max-width: 58ch;
+      margin-bottom: 28px;
+    }
+
+    .banner-text .cv-button {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 26px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .banner-text .cv-button:hover { background: var(--accent-dark); }
+
+    .banner-photo {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    /*
+      PROFILE PHOTO PLACEHOLDER
+      --------------------------------------------------------------------
+      TO ADD YOUR OWN PHOTO:
+      1. Put your photo file inside the "images" folder (next to this
+         index.html file). For example: images/profile.jpg
+      2. Change the src="..." attribute on the <img> tag right below
+         this comment to match your file name, e.g. src="images/profile.jpg"
+      3. If no photo is added yet, a grey placeholder circle with an
+         icon will show automatically instead.
+    */
+    .photo-circle {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--bg-offwhite);
+      border: 6px solid var(--bg-offwhite);
+      box-shadow: 0 0 0 1px var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-circle .placeholder-icon {
+      font-size: 4rem;
+      color: var(--text-light);
+    }
+
+    /* ======================================================================
+       CORE SKILLS
+       ====================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 30px;
+      margin-top: 30px;
+      max-width: 640px;
+    }
+
+    .skills-grid li {
+      list-style: none;
+      font-size: 0.94rem;
+      color: var(--text-mid);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .skills-grid li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* ======================================================================
+       PROJECTS SECTION — 3-column responsive card grid
+       ====================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg-white);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 12px 28px rgba(35, 38, 43, 0.08);
+      transform: translateY(-3px);
+    }
+
+    /*
+      PROJECT IMAGE PLACEHOLDER
+      --------------------------------------------------------------------
+      TO ADD A REAL PROJECT SCREENSHOT/IMAGE:
+      1. Put the image file inside the "images" folder. For example:
+         images/project-sales-dashboard.png
+      2. Change the src="..." attribute on the <img> tag inside
+         .project-thumb below to match your file name.
+      3. Recommended image size: roughly 600px wide x 360px tall (a
+         landscape rectangle) so it fills the card neatly.
+    */
+    .project-thumb {
+      width: 100%;
+      height: 180px;
+      background: var(--bg-offwhite);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-thumb .placeholder-icon {
+      font-size: 2.4rem;
+      color: var(--text-light);
+    }
+
+    .project-body {
+      padding: 22px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /*
+      PROJECT TITLE
+      --------------------------------------------------------------------
+      Replace the text inside this <h3> tag with your own project name.
+    */
+    .project-body h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    /*
+      PROJECT DESCRIPTION
+      --------------------------------------------------------------------
+      Replace the text inside this <p> tag with a short 1-3 sentence
+      summary of what the project was and what tools you used.
+    */
+    .project-body p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    /*
+      PROJECT LINK ("View Project" button)
+      --------------------------------------------------------------------
+      Change the href="#" below to the real link for this project —
+      for example a GitHub repo, a live dashboard, or a PDF case study.
+      Right now it is set to "#" which just stays on the same page.
+    */
+    .view-project-btn {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 9px 18px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .view-project-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ======================================================================
+       CONTACT SECTION
+       ====================================================================== */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .contact-list .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 1rem;
+      color: var(--text-mid);
+    }
+
+    .contact-list .contact-row i {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-offwhite);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-list a:hover { color: var(--accent); }
+
+    /* ======================================================================
+       FOOTER
+       ====================================================================== */
+    footer {
+      padding: 30px 60px 50px;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border-color);
+      margin-top: 20px;
+    }
+
+    /* ======================================================================
+       MOBILE NAV TOGGLE (hidden checkbox trick, no JS needed for menu)
+       ====================================================================== */
+    .nav-toggle-label {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 20px;
+      z-index: 1100;
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 6px;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    #nav-toggle { display: none; }
+
+    /* ======================================================================
+       RESPONSIVE BREAKPOINTS
+       ====================================================================== */
+    @media (max-width: 980px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      #about { flex-direction: column-reverse; text-align: center; gap: 36px; }
+      .banner-text p { max-width: 100%; }
+      .skills-grid { max-width: 100%; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (max-width: 760px) {
+      :root { --sidebar-width: 240px; }
+
+      .nav-toggle-label { display: flex; }
+
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+      }
+
+      #nav-toggle:checked ~ .sidebar {
+        transform: translateX(0);
+      }
+
+      .top-header { left: 0; padding-left: 70px; }
+      .main-content { margin-left: 0; }
+      section { padding: 70px 26px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      h2.section-heading { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Checkbox hack that powers the mobile sidebar toggle — no JS required for this part -->
+  <input type="checkbox" id="nav-toggle">
+  <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
+
+  <!-- ==========================================================
+       TOP HEADER BAR
+       To change the logo text, edit the words inside the .logo div.
+       ========================================================== -->
+  <header class="top-header">
+    <div class="logo">Port<span>folio</span></div>
+    <div class="social-icons">
+      <!-- These mirror the sidebar social icons. Update the href links to match. -->
+      <a href="https://www.linkedin.com/in/mavischinenye" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="mailto:mavisonyekachi@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       FIXED LEFT SIDEBAR
+       Change the NAME and JOB TITLE text below to update them
+       everywhere they appear in the sidebar.
+       ========================================================== -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <!-- YOUR NAME -->
+      <div class="name">Mavis Chidinma<br>Onyekachi</div>
+      <!-- YOUR JOB TITLE -->
+      <div class="job-title">Financial Analyst &amp; Project Manager</div>
+
+      <!-- NAVIGATION LINKS — these scroll to the sections below.
+           To add a new nav link, copy one <li> line and change the
+           text and the href="#id" to match a section's id. -->
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- SOCIAL ICONS AT THE BOTTOM OF THE SIDEBAR
+         To add or remove an icon, copy or delete one <a> line.
+         Font Awesome icon names: https://fontawesome.com/icons -->
+    <div class="sidebar-bottom">
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/mavischinenye" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:mavisonyekachi@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================
+       MAIN CONTENT
+       ========================================================== -->
+  <div class="main-content">
+
+    <!-- ========================================================
+         ABOUT / BANNER SECTION
+         Edit the tagline and bio paragraph below with your own
+         words. The photo instructions are further down.
+         ======================================================== -->
+    <section id="about">
+      <div class="banner-text">
+        <div class="section-label">WELCOME</div>
+
+        <!-- TAGLINE — one short sentence. Wrap the important part in <em> to colour it. -->
+        <h1 class="tagline">Turning financial data into strategic decisions — and plans into <em>delivered results.</em></h1>
+
+        <!-- BIO PARAGRAPH — replace this text with your own bio -->
+        <p>
+          I'm Mavis Chidinma Onyekachi, a results-driven Financial Analyst and Project Manager with a passion for turning complex data into clear, actionable insights that drive smarter business decisions. I specialise in financial modeling, budgeting, forecasting, and variance analysis, using tools like Excel and Power BI to build dashboards and reports that support strategic planning. Alongside my analytical work, I bring structured project management expertise — planning timelines, managing resources, and coordinating cross-functional teams to deliver projects on time and within budget. I'm currently open to full-time roles, freelance projects, and consulting engagements in finance, operations, or project management.
+        </p>
+
+        <a href="#contact" class="cv-button">Get in Touch</a>
+
+        <!-- CORE SKILLS LIST — add, remove, or edit any <li> line below -->
+        <ul class="skills-grid">
+          <li>Financial Modeling &amp; Forecasting</li>
+          <li>Budgeting &amp; Variance Analysis</li>
+          <li>Financial Reporting &amp; Dashboards</li>
+          <li>Project Planning &amp; Scheduling</li>
+          <li>Stakeholder Coordination</li>
+          <li>Risk Assessment &amp; Mitigation</li>
+        </ul>
+      </div>
+
+      <div class="banner-photo">
+        <div class="photo-circle">
+          <!--
+            PROFILE PHOTO
+            To swap this for a different photo later: save the new file
+            into the images/ folder, then change "images/profile.jpg"
+            below to match its file name.
+          -->
+          <img src="images/profile.jpg" alt="Mavis Chidinma Onyekachi">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PROJECTS SECTION
+         This is a 3-column grid. One demo card is included below.
+
+         TO ADD MORE PROJECT CARDS:
+         Select everything from "<div class="project-card">" down to
+         its closing "</div>" (the whole card block), copy it, and
+         paste it right after. Then edit the image, title, description,
+         and link inside your new copy. The grid will automatically
+         re-flow into rows of 3 (or fewer on smaller screens).
+         ======================================================== -->
+    <section id="projects">
+      <div class="section-label">MY WORK</div>
+      <h2 class="section-heading">Projects</h2>
+
+      <div class="projects-grid">
+
+        <!-- ===== PROJECT CARD 1 (demo) — copy this whole block to add more ===== -->
+        <div class="project-card">
+
+          <!-- PROJECT IMAGE
+               To use a real screenshot: save it into images/ (e.g.
+               images/project-sales-dashboard.png), delete the <i>
+               placeholder-icon line, and uncomment the <img> line. -->
+          <div class="project-thumb">
+            <!-- <img src="images/project-sales-dashboard.png" alt="Sales Performance Dashboard"> -->
+            <i class="fa-solid fa-chart-line placeholder-icon"></i>
+          </div>
+
+          <div class="project-body">
+            <!-- PROJECT TITLE — edit this text -->
+            <h3>Sales Performance Dashboard</h3>
+
+            <!-- PROJECT DESCRIPTION — edit this text -->
+            <p>Built an interactive Power BI dashboard tracking monthly revenue, regional performance, and budget variance for a retail client, cutting manual reporting time by 60%.</p>
+
+            <!-- PROJECT LINK — change href="#" to your real project URL -->
+            <a href="#" class="view-project-btn">View Project</a>
+          </div>
+        </div>
+        <!-- ===== END PROJECT CARD 1 ===== -->
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CONTACT SECTION
+         Edit the email, LinkedIn URL, and location text below.
+         ======================================================== -->
+    <section id="contact">
+      <div class="section-label">GET IN TOUCH</div>
+      <h2 class="section-heading">Contact</h2>
+
+      <div class="contact-list">
+        <div class="contact-row">
+          <i class="fa-solid fa-envelope"></i>
+          <!-- EMAIL — edit both the mailto: link and the visible text -->
+          <a href="mailto:mavisonyekachi@gmail.com">mavisonyekachi@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <i class="fa-brands fa-linkedin-in"></i>
+          <!-- LINKEDIN — edit both the href link and the visible text -->
+          <a href="https://www.linkedin.com/in/mavischinenye" target="_blank" rel="noopener">linkedin.com/in/mavischinenye</a>
+        </div>
+        <div class="contact-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <!-- LOCATION — edit this text -->
+          <span>Umuahia, Abia State, Nigeria</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FOOTER — edit the name/year text if you'd like
+         ======================================================== -->
+    <footer>
+      &copy; <span id="year"></span> Mavis Chidinma Onyekachi. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Auto-fills the current year in the footer copyright line — no editing needed here.
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Closes the mobile sidebar automatically after clicking a nav link (small screens only).
+    document.querySelectorAll('.sidebar-nav a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        var toggle = document.getElementById('nav-toggle');
+        if (toggle) toggle.checked = false;
+      });
+    });
+
+    // Highlights the current section's nav link as you scroll — purely cosmetic, no editing needed.
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.sidebar-nav a');
+    function onScroll() {
+      var currentId = '';
+      sections.forEach(function (sec) {
+        var rect = sec.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom >= 120) {
+          currentId = sec.id;
+        }
+      });
+      navLinks.forEach(function (link) {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+  </script>
+
+</body>
+</html>
